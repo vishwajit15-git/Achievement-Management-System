@@ -7,11 +7,17 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from config import DevelopmentConfig, ProductionConfig
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 # ------------------------------------------------------------------
 # App setup
 # ------------------------------------------------------------------
 
 app = Flask(__name__)
+
+app.secret_key = os.getenv("SECRET_KEY")
 
 # Choose config based on environment
 env = os.environ.get("FLASK_ENV", "development")
